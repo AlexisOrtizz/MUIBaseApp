@@ -11,8 +11,9 @@ import Link from '@mui/material/Link';
 import TextField from '@mui/material/TextField';
 import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
-import ForgotPassword from './ForgotPassword';
+import ForgotPassword from '../components/ForgotPassword';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
+import useAuthStore from '@/store/auth/authStore';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -33,6 +34,8 @@ const Card = styled(MuiCard)(({ theme }) => ({
 }));
 
 export default function SignInCard() {
+  const login = useAuthStore(state => state.login);
+
   const [emailError, setEmailError] = React.useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
   const [passwordError, setPasswordError] = React.useState(false);
@@ -48,14 +51,20 @@ export default function SignInCard() {
   };
 
   const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     if (emailError || passwordError) {
-      event.preventDefault();
       return;
     }
     const data = new FormData(event.currentTarget);
     console.log({
       email: data.get('email'),
       password: data.get('password'),
+    });
+    login({
+      uid: '123456',
+      email: data.get('email')?.toString(),
+      displayName: 'Alexis',
+      photoUrl: 'wwww.hola.com',
     });
   };
 

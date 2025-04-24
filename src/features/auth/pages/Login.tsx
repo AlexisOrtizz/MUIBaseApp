@@ -1,15 +1,12 @@
-import CssBaseline from '@mui/material/CssBaseline';
 import Stack from '@mui/material/Stack';
-import AppTheme from './theme/AppTheme';
-import ColorModeIconDropdown from './theme/ColorModeIconDropdown';
-import SignInCard from './components/SignInCard';
-import Content from './components/Content';
+import { 
+  SignInCard, Content 
+} from '@/features/auth/components';
+import AuthLayout from '@/layouts/AuthLayout';
 
-export default function SignInSide(props: { disableCustomTheme?: boolean }) {
+export default function Login() {
   return (
-    <AppTheme {...props}>
-      <CssBaseline enableColorScheme />
-      <ColorModeIconDropdown sx={{ position: 'fixed', top: '1rem', right: '1rem' }} />
+    <AuthLayout>
       <Stack
         direction="column"
         component="main"
@@ -61,6 +58,6 @@ export default function SignInSide(props: { disableCustomTheme?: boolean }) {
           </Stack>
         </Stack>
       </Stack>
-    </AppTheme>
+    </AuthLayout>
   );
-}
+};
