@@ -1,7 +1,7 @@
 import Stack from '@mui/material/Stack';
 import { 
   SignInCard, Content 
-} from '@/features/auth/components';
+} from '@/auth/components';
 import AuthLayout from '@/layouts/AuthLayout';
 
 export default function LoginPage() {

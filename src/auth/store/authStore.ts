@@ -1,5 +1,5 @@
 import { create, StateCreator } from 'zustand';
-import { AuthStore, AuthState, AuthActions } from '@/types/auth';
+import { AuthStore, AuthState, AuthActions } from '@/auth/types/authStore';
 
 const initialState: AuthState = {
   status: 'checking',

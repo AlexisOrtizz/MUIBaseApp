@@ -13,9 +13,8 @@ import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import ForgotPassword from '../components/ForgotPassword';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
-// import useAuthStore from '@/store/auth/authStore';
 import { useForm } from '@/hooks/useForm';
-import { authService } from '@/services/auth';
+import { authService } from '@/auth/services';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',

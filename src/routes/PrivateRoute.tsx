@@ -1,6 +1,6 @@
 import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
-import useAuthStore from '@/store/auth/authStore';
+import useAuthStore from '@/auth/store/authStore';
 
 const PrivateRoute = ({ children } : {
     children: React.ReactNode

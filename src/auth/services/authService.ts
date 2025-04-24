@@ -1,5 +1,5 @@
-import useAuthStore from "@/store/auth/authStore";
-import { AuthState } from "@/types/auth";
+import useAuthStore from "@/auth/store/authStore";
+import { AuthState } from "@/auth/types/authStore";
 
 export const login = (data: Partial<AuthState>) => {
   const { login } = useAuthStore.getState();
