@@ -1,4 +1,4 @@
-import * as React from 'react';
+import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import MuiCard from '@mui/material/Card';
@@ -13,7 +13,9 @@ import Typography from '@mui/material/Typography';
 import { styled } from '@mui/material/styles';
 import ForgotPassword from '../components/ForgotPassword';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
-import useAuthStore from '@/store/auth/authStore';
+// import useAuthStore from '@/store/auth/authStore';
+import { useForm } from '@/hooks/useForm';
+import { authService } from '@/services/auth';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -34,13 +36,20 @@ const Card = styled(MuiCard)(({ theme }) => ({
 }));
 
 export default function SignInCard() {
-  const login = useAuthStore(state => state.login);
+  // const login = useAuthStore(state => state.login);
+  const {
+    email, password,
+    onInputChange,
+  } = useForm({
+    email: '',
+    password: '',
+  });
 
-  const [emailError, setEmailError] = React.useState(false);
-  const [emailErrorMessage, setEmailErrorMessage] = React.useState('');
-  const [passwordError, setPasswordError] = React.useState(false);
-  const [passwordErrorMessage, setPasswordErrorMessage] = React.useState('');
-  const [open, setOpen] = React.useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [emailErrorMessage, setEmailErrorMessage] = useState('');
+  const [passwordError, setPasswordError] = useState(false);
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
+  const [open, setOpen] = useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -55,14 +64,12 @@ export default function SignInCard() {
     if (emailError || passwordError) {
       return;
     }
-    const data = new FormData(event.currentTarget);
-    console.log({
-      email: data.get('email'),
-      password: data.get('password'),
-    });
-    login({
+
+    console.log({ email, password, });
+  
+    authService.login({
       uid: '123456',
-      email: data.get('email')?.toString(),
+      email,
       displayName: 'Alexis',
       photoUrl: 'wwww.hola.com',
     });
@@ -128,6 +135,8 @@ export default function SignInCard() {
             fullWidth
             variant="outlined"
             color={emailError ? 'error' : 'primary'}
+            value={email}
+            onChange={onInputChange}
           />
         </FormControl>
         <FormControl>
@@ -156,6 +165,8 @@ export default function SignInCard() {
             fullWidth
             variant="outlined"
             color={passwordError ? 'error' : 'primary'}
+            value={password}
+            onChange={onInputChange}
           />
         </FormControl>
         <FormControlLabel

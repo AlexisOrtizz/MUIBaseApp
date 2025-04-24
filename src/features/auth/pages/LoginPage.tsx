@@ -4,7 +4,7 @@ import {
 } from '@/features/auth/components';
 import AuthLayout from '@/layouts/AuthLayout';
 
-export default function Login() {
+export default function LoginPage() {
   return (
     <AuthLayout>
       <Stack

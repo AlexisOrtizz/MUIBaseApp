@@ -1,26 +1,17 @@
-import { create } from 'zustand';
+import { create, StateCreator } from 'zustand';
+import { AuthStore, AuthState, AuthActions } from '@/types/auth';
 
-type Store = {
-  status: string;
-  uid: string | null;
-  email: string | null;
-  displayName: string | null;
-  photoUrl: string | null;
-  errorMsg: string | null;
-  login: (payload: Partial<Store>) => void;
-  logout: (msg?: string) => void;
-  checkingCredentials: () => void;
-}
-
-const useStore = create<Store>()((set) => ({
+const initialState: AuthState = {
   status: 'checking',
   uid: null,
   email: null,
   displayName: null,
   photoUrl: null,
   errorMsg: null,
-  
-  login: (payload: Partial<Store>) => set(() => ({
+};
+
+const createAuthActions: StateCreator<AuthStore, [], [], AuthActions> = (set) => ({
+  login: (payload: Partial<AuthState>) => set(() => ({
     status: 'authenticated',
     uid: payload.displayName,
     email: payload.email,
@@ -41,6 +32,12 @@ const useStore = create<Store>()((set) => ({
   checkingCredentials: () => set(() => ({
     status: 'checking',
   })),
+});
+
+const useAuthStore = create<AuthStore>()((...a) => ({
+  ...initialState,
+  ...createAuthActions(...a),
+  
 }));
 
-export default useStore;
+export default useAuthStore;
