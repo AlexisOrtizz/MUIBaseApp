@@ -1,6 +1,6 @@
 import { Navigate, Route, Routes } from "react-router-dom";
 // import { Navbar } from "../../ui";
-import { DashboardPage } from "@/features/dashboard/pages";
+import DashboardPage from "@/features/dashboard/pages/Dashboard";
 import AuthLayout from "@/layouts/AuthLayout";
 
 const HeroesRoutes = () => {

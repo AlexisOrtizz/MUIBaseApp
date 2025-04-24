@@ -2,7 +2,7 @@ import { Route, Routes } from 'react-router-dom'
 
 import PublicRoute from './PublicRoute';
 import PrivateRoute from './PrivateRoute';
-import MainRoutes from './MainRoutes';
+import DashRoutes from '@/features/dashboard/routes/MainRoutes';
 import LoginPage from '@/features/auth/pages/Login';
 
 export const AppRouter = () => {
@@ -17,7 +17,7 @@ export const AppRouter = () => {
 
         <Route path="/*" element={
           <PrivateRoute>
-            <MainRoutes />
+            <DashRoutes />
           </PrivateRoute>
         } />
       </Routes>
