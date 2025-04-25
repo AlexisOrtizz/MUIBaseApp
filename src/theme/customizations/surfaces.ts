@@ -1,7 +1,6 @@
 import { alpha, Theme, Components } from '@mui/material/styles';
 import { gray } from '../themePrimitives';
 
-/* eslint-disable import/prefer-default-export */
 export const surfacesCustomizations: Components<Theme> = {
   MuiAccordion: {
     defaultProps: {
@@ -34,15 +33,12 @@ export const surfacesCustomizations: Components<Theme> = {
   },
   MuiAccordionSummary: {
     styleOverrides: {
-      root: ({ theme }) => ({
+      root: {
         border: 'none',
         borderRadius: 8,
-        '&:hover': { backgroundColor: gray[50] },
+        '&:hover': { backgroundColor: 'background.paper' },
         '&:focus-visible': { backgroundColor: 'transparent' },
-        ...theme.applyStyles('dark', {
-          '&:hover': { backgroundColor: gray[800] },
-        }),
-      }),
+      },
     },
   },
   MuiAccordionDetails: {
@@ -62,20 +58,17 @@ export const surfacesCustomizations: Components<Theme> = {
           padding: 16,
           gap: 16,
           transition: 'all 100ms ease',
-          backgroundColor: gray[50],
+          backgroundColor: 'background.paper',
           borderRadius: (theme).shape.borderRadius,
-          border: `1px solid ${(theme).palette.divider}`,
+          border: `1px solid divider`,
           boxShadow: 'none',
-          ...theme.applyStyles('dark', {
-            backgroundColor: gray[800],
-          }),
           variants: [
             {
               props: {
                 variant: 'outlined',
               },
               style: {
-                border: `1px solid ${(theme).palette.divider}`,
+                border: `1px solid divider`,
                 boxShadow: 'none',
                 background: 'hsl(0, 0%, 100%)',
                 ...theme.applyStyles('dark', {

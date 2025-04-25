@@ -35,13 +35,12 @@ const Card = styled(MuiCard)(({ theme }) => ({
 }));
 
 export default function SignInCard() {
-  // const login = useAuthStore(state => state.login);
   const {
     email, password,
     onInputChange,
   } = useForm({
-    email: '',
-    password: '',
+    email: 'test@gmail.com',
+    password: '123456',
   });
 
   const [emailError, setEmailError] = useState(false);
@@ -58,7 +57,7 @@ export default function SignInCard() {
     setOpen(false);
   };
 
-  const handleSubmit = (event: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     if (emailError || passwordError) {
       return;
@@ -66,7 +65,7 @@ export default function SignInCard() {
 
     console.log({ email, password, });
   
-    authService.login({
+    await authService.login({
       uid: '123456',
       email,
       displayName: 'Alexis',

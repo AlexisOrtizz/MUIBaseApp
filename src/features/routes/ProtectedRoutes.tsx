@@ -1,13 +1,10 @@
 import { Navigate, Route, Routes } from "react-router-dom";
-// import { Navbar } from "../../ui";
 import DashboardPage from "@/features/dashboard/pages/Dashboard";
-import AuthLayout from "@/layouts/AuthLayout";
+import MainLayout from "@/layouts/MainLayout";
 
-const HeroesRoutes = () => {
+const ProtectedRoutes = () => {
   return (
-    <AuthLayout>
-      {/* <Navbar /> */}
-
+    <MainLayout>
       <div className="container">
         <Routes>
           <Route path="dashboard" element={<DashboardPage />} />
@@ -15,8 +12,8 @@ const HeroesRoutes = () => {
           <Route path="/" element={<Navigate to="/dashboard" />} />
         </Routes>
       </div>
-    </AuthLayout>
+    </MainLayout>
   );
 };
 
-export default HeroesRoutes;
+export default ProtectedRoutes;

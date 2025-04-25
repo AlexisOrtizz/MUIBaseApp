@@ -11,7 +11,6 @@ import SideMenu from '../components/SideMenu';
   // datePickersCustomizations,
   // treeViewCustomizations,
 // } from '../theme/customizations';
-import AuthLayout from '@/layouts/AuthLayout';
 
 // const xThemeComponents = {
   // ...chartsCustomizations,
@@ -20,35 +19,33 @@ import AuthLayout from '@/layouts/AuthLayout';
   // ...treeViewCustomizations,
 // };
 
-export default function Dashboard(props: { disableCustomTheme?: boolean }) {
+export default function Dashboard() {
   return (
-    <AuthLayout>
-      <Box sx={{ display: 'flex' }}>
-        <SideMenu />
-        <AppNavbar />
-        {/* Main content */}
-        <Box
-          component="main"
-          sx={(theme) => ({
-            flexGrow: 1,
-            backgroundColor: alpha(theme.palette.background.default, 1),
-            overflow: 'auto',
-          })}
+    <Box sx={{ display: 'flex' }}>
+      <SideMenu />
+      <AppNavbar />
+      {/* Main content */}
+      <Box
+        component="main"
+        sx={(theme) => ({
+          flexGrow: 1,
+          backgroundColor: alpha(theme.palette.background.default, 1),
+          overflow: 'auto',
+        })}
+      >
+        <Stack
+          spacing={2}
+          sx={{
+            alignItems: 'center',
+            mx: 3,
+            pb: 5,
+            mt: { xs: 8, md: 0 },
+          }}
         >
-          <Stack
-            spacing={2}
-            sx={{
-              alignItems: 'center',
-              mx: 3,
-              pb: 5,
-              mt: { xs: 8, md: 0 },
-            }}
-          >
-            <Header />
-            <MainGrid />
-          </Stack>
-        </Box>
+          <Header />
+          <MainGrid />
+        </Stack>
       </Box>
-    </AuthLayout>
+    </Box>
   );
 }

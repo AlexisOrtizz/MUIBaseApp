@@ -1,9 +1,13 @@
-import AuthLayout from '@/layouts/AuthLayout';
+import { BrowserRouter } from 'react-router-dom';
 import { AppRouter } from './routes/AppRouter';
+import AppTheme from './theme/AppTheme';
 
 export default function App() {
   return (
-    // <AuthLayout />
-    <AppRouter />
+    <BrowserRouter>
+      <AppTheme>
+        <AppRouter />
+      </AppTheme>
+    </BrowserRouter>
   );
 }

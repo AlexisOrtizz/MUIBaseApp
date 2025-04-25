@@ -1,14 +1,13 @@
 import React from "react";
 
 
-const MainLayout = ({ children } : {
+function MainLayout({ children }: { 
   children: React.ReactNode
-}) => {
+}) {
   return (
-    <div>
-      <p>MainLayout</p>
+    <>
       { children }
-    </div>
+    </>
   );
 }
 

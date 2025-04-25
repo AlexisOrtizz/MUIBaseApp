@@ -19,7 +19,7 @@ declare module '@mui/material/styles' {
     900: string;
   }
 
-  interface PaletteColor extends ColorRange {}
+  // interface PaletteColor extends ColorRange {}
 
   interface Palette {
     baseShadow: string;
@@ -274,7 +274,7 @@ export const colorSchemes = {
       divider: alpha(gray[300], 0.4),
       background: {
         default: 'hsl(0, 0%, 99%)',
-        paper: 'hsl(220, 35%, 97%)',
+        paper: gray[50],
       },
       text: {
         primary: gray[800],
@@ -394,6 +394,7 @@ export const shape = {
   borderRadius: 8,
 };
 
+// eslint-disable-next-line @typescript-eslint/ban-ts-comment
 // @ts-ignore
 const defaultShadows: Shadows = [
   'none',
