@@ -8,7 +8,7 @@ import { useTheme } from '@mui/material/styles';
 
 export default function PageViewsBarChart() {
   const theme = useTheme();
-  const colorPalette = [
+  const colorPalette: string[] = [
     (theme).palette.primary.dark,
     (theme).palette.primary.main,
     (theme).palette.primary.light,

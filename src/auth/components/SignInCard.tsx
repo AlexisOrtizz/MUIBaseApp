@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import MuiCard from '@mui/material/Card';
@@ -14,7 +14,9 @@ import { styled } from '@mui/material/styles';
 import ForgotPassword from '../components/ForgotPassword';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
 import { useForm } from '@/hooks/useForm';
-import { authService } from '@/auth/services';
+import { useAuthService } from '../hooks/useAuthService';
+import Swal from 'sweetalert2';
+import useAuthStore from '../store/authStore';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -35,11 +37,14 @@ const Card = styled(MuiCard)(({ theme }) => ({
 }));
 
 export default function SignInCard() {
+  const { startLogin } = useAuthService();
+  const { errorMsg } = useAuthStore();
+
   const {
     email, password,
     onInputChange,
   } = useForm({
-    email: 'test@gmail.com',
+    email: 'aortiz@gmail.com',
     password: '123456',
   });
 
@@ -48,6 +53,13 @@ export default function SignInCard() {
   const [passwordError, setPasswordError] = useState(false);
   const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
   const [open, setOpen] = useState(false);
+
+  useEffect(() => {
+    console.log('errorMsg', errorMsg);
+    if (errorMsg) {
+      Swal.fire('Error en la autenticación', errorMsg, 'error');
+    }
+  }, [errorMsg]);
 
   const handleClickOpen = () => {
     setOpen(true);
@@ -59,18 +71,12 @@ export default function SignInCard() {
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+    
     if (emailError || passwordError) {
       return;
     }
-
-    console.log({ email, password, });
   
-    await authService.login({
-      uid: '123456',
-      email,
-      displayName: 'Alexis',
-      photoUrl: 'wwww.hola.com',
-    });
+    await startLogin(email, password);
   };
 
   const validateInputs = () => {

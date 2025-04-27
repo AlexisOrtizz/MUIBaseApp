@@ -1,18 +1,25 @@
 import useAuthStore from "@/auth/store/authStore";
-import { AuthState } from "@/auth/types/authStore";
+import { AuthState, AuthUser } from "@/auth/types/authStore";
+import axiosInstance from "@/config/axios";
 
-export const login = async (data: Partial<AuthState>) => {
-  const { login, checkingCredentials } = useAuthStore.getState();
-  checkingCredentials();
-  login(data);
+export const login = async (email: string, password: string) => {
+  const { onLogin, onLogout, onChecking } = useAuthStore.getState();
+  onChecking();
 
-  return {
-    ok: true,
-    msg: 'Login...',
+  try {
+    const { data } = await axiosInstance.post('/auth', { email, password});
+
+    localStorage.setItem('token', data.token);
+    localStorage.setItem('token-init-date', new Date().getTime().toString());
+
+    onLogin(data);
+  } catch (error) {
+    onLogout('Invalid credentials');
+    console.error('Login error:', error);
   };
 };
- 
+
 export const logout = () => {
-  const { logout } = useAuthStore.getState();
-  logout();
+  const { onLogout } = useAuthStore.getState();
+  onLogout();
 };

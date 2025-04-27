@@ -1,12 +1,15 @@
 import useAuthStore from "@/auth/store/authStore";
 import { useEffect } from "react";
+import { useAuthService } from "./useAuthService";
 
 export const useCheckAuth = () => {
   const status = useAuthStore(state => state.status);
-  const logout = useAuthStore(state => state.logout);
+  const onChecking = useAuthStore(state => state.onChecking);
+  const { checkAuthToken } = useAuthService();
 
   useEffect(() => {
-    logout();
+    onChecking();
+    checkAuthToken();
   }, []);
 
   return status;

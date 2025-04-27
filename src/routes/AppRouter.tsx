@@ -4,14 +4,13 @@ import PrivateRoute from './PrivateRoute';
 import DashRoutes from '@/features/routes/ProtectedRoutes';
 import AuthRoutes from '@/auth/routes/AuthRoutes';
 import CheckingAuth from '@/components/CheckingAuth';
-import { useCheckAuth } from '@/hooks/useCheckAuth';
+import { useCheckAuth } from '@/auth/hooks/useCheckAuth';
 
 export const AppRouter = () => {
   const status = useCheckAuth();
 
   if( status === 'checking') {
     return (
-      
         <CheckingAuth />
     );
   }
@@ -32,5 +31,5 @@ export const AppRouter = () => {
         } />
       </Routes>
     </>
-  )
+  );
 }

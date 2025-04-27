@@ -1,6 +1,5 @@
-import { Theme, Components, alpha } from '@mui/material/styles';
-import { bgDefault, gray } from '../themePrimitives';
-// import { gray } from '../themePrimitives';
+import { Theme, Components } from '@mui/material/styles';
+import { gray } from '../themePrimitives';
 
 export const othersCustomizations: Components<Theme> = {
   // icons

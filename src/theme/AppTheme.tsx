@@ -6,6 +6,7 @@ import { feedbackCustomizations } from './customizations/feedback';
 import { navigationCustomizations } from './customizations/navigation';
 import { surfacesCustomizations } from './customizations/surfaces';
 import { chartsCustomizations } from './customizations/charts';
+// import { treeViewCustomizations } from './customizations/treeView';
 import { othersCustomizations } from './customizations/others';
 import { colorSchemes, typography, shadows, shape } from './themePrimitives';
 import { CssBaseline } from '@mui/material';
@@ -31,6 +32,7 @@ export default function AppTheme({ children } : {
       ...navigationCustomizations,
       ...surfacesCustomizations,
       ...chartsCustomizations,
+      // ...treeViewCustomizations,
       ...othersCustomizations,
     },
   });

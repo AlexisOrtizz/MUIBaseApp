@@ -9,7 +9,7 @@ import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 import MenuButton from './MenuButton';
 import MenuContent from './MenuContent';
 import CardAlert from './CardAlert';
-import { authService } from '@/auth/services';
+import { useAuthService } from '@/auth/hooks/useAuthService';
 
 interface SideMenuMobileProps {
   open: boolean | undefined;
@@ -17,8 +17,10 @@ interface SideMenuMobileProps {
 }
 
 export default function SideMenuMobile({ open, toggleDrawer }: SideMenuMobileProps) {
+  const { startLogout } = useAuthService();
+  
   const handleLogout = () => {
-    authService.logout();
+    startLogout();
   };
 
   return (

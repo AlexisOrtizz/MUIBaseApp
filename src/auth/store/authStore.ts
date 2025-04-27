@@ -1,37 +1,32 @@
 import { create, StateCreator } from 'zustand';
-import { AuthStore, AuthState, AuthActions } from '@/auth/types/authStore';
+import { AuthStore, AuthState, AuthActions, AuthUser } from '@/auth/types/authStore';
 
 const initialState: AuthState = {
   status: 'checking',
-  uid: null,
-  email: null,
-  displayName: null,
-  photoUrl: null,
+  user: null,
   errorMsg: null,
 };
 
 const createAuthActions: StateCreator<AuthStore, [], [], AuthActions> = (set) => ({
-  login: (payload: Partial<AuthState>) => set(() => ({
-    status: 'authenticated',
-    uid: payload.displayName,
-    email: payload.email,
-    displayName: payload.displayName,
-    photoURL: payload.photoUrl,
+  onChecking: () => set(() => ({
+    status: 'checking',
+    user: null,
     errorMessage: null,
   })),
-
-  logout: (msg?: string) => set(() => ({
+  onLogin: (payload: AuthUser) => set(() => ({
+    status: 'authenticated',
+    user: payload,
+    errorMessage: null,
+  })),
+  onLogout: (msg?: string) => set(() => ({
     status: 'not-authenticated',
-    uid: null,
-    email: null,
-    displayName: null,
-    photoURL: null,
+    user: null,
     errorMessage: msg,
   })),
-
-  checkingCredentials: () => set(() => ({
-    status: 'checking',
+  clearErrorMessage: () => set(() => ({
+    errorMsg: null,
   })),
+
 });
 
 const useAuthStore = create<AuthStore>()((...a) => ({
