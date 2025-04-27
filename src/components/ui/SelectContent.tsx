@@ -13,13 +13,13 @@ import DevicesRoundedIcon from '@mui/icons-material/DevicesRounded';
 import SmartphoneRoundedIcon from '@mui/icons-material/SmartphoneRounded';
 import ConstructionRoundedIcon from '@mui/icons-material/ConstructionRounded';
 
-const Avatar = styled(MuiAvatar)(({ theme }) => ({
+const Avatar = styled(MuiAvatar)({
   width: 28,
   height: 28,
-  backgroundColor: (theme).palette.background.paper,
-  color: (theme).palette.text.secondary,
-  border: `1px solid ${(theme).palette.divider}`,
-}));
+  backgroundColor: 'background.paper',
+  color: 'text.secondary',
+  border: `1px solid divider`,
+});
 
 const ListItemAvatar = styled(MuiListItemAvatar)({
   minWidth: 0,

@@ -10,6 +10,7 @@ import ListItemIcon, { listItemIconClasses } from '@mui/material/ListItemIcon';
 import LogoutRoundedIcon from '@mui/icons-material/LogoutRounded';
 import MoreVertRoundedIcon from '@mui/icons-material/MoreVertRounded';
 import MenuButton from './MenuButton';
+import { authService } from '@/auth/services';
 
 const MenuItem = styled(MuiMenuItem)({
   margin: '2px 0',
@@ -21,9 +22,15 @@ export default function OptionsMenu() {
   const handleClick = (event: React.MouseEvent<HTMLElement>) => {
     setAnchorEl(event.currentTarget);
   };
+  
   const handleClose = () => {
     setAnchorEl(null);
   };
+
+  const handleLogout = () => {
+    authService.logout();
+  };
+
   return (
     <React.Fragment>
       <MenuButton
@@ -31,7 +38,7 @@ export default function OptionsMenu() {
         onClick={handleClick}
         sx={{ borderColor: 'transparent' }}
       >
-        <MoreVertRoundedIcon />
+        <MoreVertRoundedIcon color="primary" />
       </MenuButton>
       <Menu
         anchorEl={anchorEl}
@@ -60,17 +67,18 @@ export default function OptionsMenu() {
         <MenuItem onClick={handleClose}>Settings</MenuItem>
         <Divider />
         <MenuItem
-          onClick={handleClose}
+          onClick={handleLogout}
           sx={{
             [`& .${listItemIconClasses.root}`]: {
               ml: 'auto',
               minWidth: 0,
             },
+            color: 'error.main'
           }}
         >
           <ListItemText>Logout</ListItemText>
           <ListItemIcon>
-            <LogoutRoundedIcon fontSize="small" />
+            <LogoutRoundedIcon color="error" fontSize="small" />
           </ListItemIcon>
         </MenuItem>
       </Menu>

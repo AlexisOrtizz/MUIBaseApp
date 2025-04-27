@@ -39,12 +39,8 @@ export default function ColorModeIconDropdown(props: IconButtonOwnProps) {
   }
   const resolvedMode = (systemMode || mode) as 'light' | 'dark';
   const icon = {
-    light: <LightModeIcon sx={(theme) => ({
-      color: theme.palette.primary.main
-    })} />,
-    dark: <DarkModeIcon sx={(theme) => ({
-      color: theme.palette.primary.main
-    })} />,
+    light: <LightModeIcon sx={{ color: 'primary.main' }} />,
+    dark: <DarkModeIcon sx={{ color: 'primary.main' }} />,
   }[resolvedMode];
   return (
     <React.Fragment>

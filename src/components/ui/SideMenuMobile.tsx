@@ -9,6 +9,7 @@ import NotificationsRoundedIcon from '@mui/icons-material/NotificationsRounded';
 import MenuButton from './MenuButton';
 import MenuContent from './MenuContent';
 import CardAlert from './CardAlert';
+import { authService } from '@/auth/services';
 
 interface SideMenuMobileProps {
   open: boolean | undefined;
@@ -16,6 +17,10 @@ interface SideMenuMobileProps {
 }
 
 export default function SideMenuMobile({ open, toggleDrawer }: SideMenuMobileProps) {
+  const handleLogout = () => {
+    authService.logout();
+  };
+
   return (
     <Drawer
       anchor="right"
@@ -43,7 +48,7 @@ export default function SideMenuMobile({ open, toggleDrawer }: SideMenuMobilePro
             <Avatar
               sizes="small"
               alt="Riley Carter"
-              src="/static/images/avatar/7.jpg"
+              src="https://porfolio.dev/midudev.webp"
               sx={{ width: 24, height: 24 }}
             />
             <Typography component="p" variant="h6">
@@ -51,7 +56,7 @@ export default function SideMenuMobile({ open, toggleDrawer }: SideMenuMobilePro
             </Typography>
           </Stack>
           <MenuButton showBadge>
-            <NotificationsRoundedIcon />
+            <NotificationsRoundedIcon color="primary" />
           </MenuButton>
         </Stack>
         <Divider />
@@ -61,7 +66,9 @@ export default function SideMenuMobile({ open, toggleDrawer }: SideMenuMobilePro
         </Stack>
         <CardAlert />
         <Stack sx={{ p: 2 }}>
-          <Button variant="outlined" fullWidth startIcon={<LogoutRoundedIcon />}>
+          <Button variant="outlined" fullWidth startIcon={<LogoutRoundedIcon />}
+            onClick={handleLogout}
+          >
             Logout
           </Button>
         </Stack>

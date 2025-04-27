@@ -23,7 +23,7 @@ export const dataDisplayCustomizations: Components<Theme> = {
         [`& .${svgIconClasses.root}`]: {
           width: '1rem',
           height: '1rem',
-          color: (theme).palette.text.secondary,
+          color: (theme).palette.text.secondary, // sidebar icons color
         },
         [`& .${typographyClasses.root}`]: {
           fontWeight: 500,
@@ -38,7 +38,11 @@ export const dataDisplayCustomizations: Components<Theme> = {
             opacity: 1,
             backgroundColor: alpha(theme.palette.action.selected, 0.3),
             [`& .${svgIconClasses.root}`]: {
-              color: (theme).palette.text.primary,
+              // active sidebar icon color
+              color: gray[800],
+              ...theme.applyStyles('dark', {
+                color: gray[50],
+              }),
             },
             '&:focus-visible': {
               backgroundColor: alpha(theme.palette.action.selected, 0.3),
