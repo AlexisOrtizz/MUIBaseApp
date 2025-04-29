@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Box from '@mui/material/Box';
 import Button from '@mui/material/Button';
 import MuiCard from '@mui/material/Card';
@@ -15,8 +15,6 @@ import ForgotPassword from '../components/ForgotPassword';
 import { GoogleIcon, FacebookIcon, SitemarkIcon } from './CustomIcons';
 import { useForm } from '@/hooks/useForm';
 import { useAuthService } from '../hooks/useAuthService';
-import Swal from 'sweetalert2';
-import useAuthStore from '../store/authStore';
 
 const Card = styled(MuiCard)(({ theme }) => ({
   display: 'flex',
@@ -38,7 +36,6 @@ const Card = styled(MuiCard)(({ theme }) => ({
 
 export default function SignInCard() {
   const { startLogin } = useAuthService();
-  const { errorMsg } = useAuthStore();
 
   const {
     email, password,
@@ -53,13 +50,6 @@ export default function SignInCard() {
   const [passwordError, setPasswordError] = useState(false);
   const [passwordErrorMessage, setPasswordErrorMessage] = useState('');
   const [open, setOpen] = useState(false);
-
-  useEffect(() => {
-    console.log('errorMsg', errorMsg);
-    if (errorMsg) {
-      Swal.fire('Error en la autenticación', errorMsg, 'error');
-    }
-  }, [errorMsg]);
 
   const handleClickOpen = () => {
     setOpen(true);

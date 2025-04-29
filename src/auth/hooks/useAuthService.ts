@@ -1,6 +1,7 @@
 import axios from "@/config/axios";
 import useAuthStore from "@/auth/store/authStore";
 import { AuthRegisterReq } from "../types/request";
+import Swal from "sweetalert2";
 
 export const useAuthService = () => {
   const onChecking = useAuthStore(state => state.onChecking);
@@ -27,10 +28,24 @@ export const useAuthService = () => {
         photoUrl: data.photoUrl,
       });
     } catch (error) {
+      console.error('Error en el login', error);
       onLogout('Credenciales incorrectas');
-      // setTimeout(() => {
-      //   clearErrorMessage();
-      // }, 10);
+      Swal.fire({
+        title: 'Error en la autenticación', 
+        text: 'Credenciales incorrectas', 
+        toast: true,
+        position: 'top-right',
+        icon: 'error',
+        showConfirmButton: false,
+        timer: 3000,
+        // timerProgressBar: true,
+        // didOpen: () => {
+        //   Swal.showLoading();
+        // },
+        // willClose: () => {
+        //   Swal.hideLoading();
+        // }
+      });
     };
   };
 
@@ -60,6 +75,7 @@ export const useAuthService = () => {
 
   const checkAuthToken = async () => {
     const token = localStorage.getItem('token');
+
     if( !token ) return onLogout();
 
     try {
@@ -74,17 +90,18 @@ export const useAuthService = () => {
         name: data.name,
         photoUrl: data.photoUrl,
       });
-    } catch (error) {
+      console.log('checkAuthToken', data);
+    } catch (error: unknown) {
+      console.error('Error en el token', error);
       localStorage.clear();
       onLogout('Token inválido');
-      // setTimeout(() => {
-      //     clearErrorMessage();
-      // }, 10);
+      Swal.fire('Error en la autenticación', 'Token inválido', 'error');
     }
   };
 
   const startLogout = () => {
     localStorage.clear();
+    console.log('Logout...');
     // TODO: clear other session data if needed
     onLogout();
   };

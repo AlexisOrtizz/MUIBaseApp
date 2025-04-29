@@ -22,8 +22,8 @@ axiosInstance.interceptors.response.use(
   (response) => response,
   (error) => {
     // Manejo global de errores
-    console.error('Error en la respuesta:', error);
-    return Promise.reject(error);
+    console.error('Error en la respuesta:', error.response.data);
+    return Promise.reject(error.response.data);
   }
 );
 
